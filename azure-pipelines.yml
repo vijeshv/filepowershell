@@ -32,14 +32,14 @@ stages:
   displayName: Run load2
   jobs:
   - job: Run
-    displayName: Run
-    variables:
-      PROJECT_NAME: "sdsd"
+    displayName: Run 2
     pool:
       vmImage: 'ubuntu-18.04'
-      container: neoload_runner1
       steps:
-      - script: |
+      - task: DockerInstaller@0
+        inputs:
+          dockerVersion: '17.09.0-ce'
+      - bash: |
          docker run -t --rm \
             -v "$(wksp)/neoload_project":/neoload-project \
             -e SCENARIO_NAME=jenkinsscenario \
@@ -48,3 +48,5 @@ stages:
             -e CONTROLLER_ZONE_ID=GcRHw \
             -e LG_ZONE_IDS=GcRHw:1 \
             neotys/neoload-web-test-launcher:latest
+
+      
