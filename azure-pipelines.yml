@@ -1,0 +1,50 @@
+# Docker
+# Build a Docker image 
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+  nlw_token: $(secret_nlw_token)
+  zone_code: pimnV
+  wksp: $(Pipeline.Workspace)/s
+  zip_file_url: "https://raw.githubusercontent.com/vijeshv/azuredevops/master/Amex-master.zip"
+
+stages:
+- stage: PullNLProject
+  displayName: Grab public sample NeoLoad project
+  jobs:
+  - job: Pull
+    displayName: Pull
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+    - bash: |
+        rm -rf $(wksp)/neoload_project
+        mkdir $(wksp)/neoload_project
+        curl $(zip_file_url) --output $(wksp)/neoload_project/project.zip
+- stage: Run_NeoLoad_project
+  displayName: Run load
+  jobs:
+  - job: Run
+    displayName: Run
+    variables:
+      PROJECT_NAME: "sdsd"
+    pool:
+      vmImage: 'ubuntu-18.04'
+      container: neoload_runner1
+      steps:
+      - script: |
+         docker run -t --rm \
+            -v "$(wksp)/neoload_project":/neoload-project \
+            -e SCENARIO_NAME=jenkinsscenario \
+            -e NEOLOADWEB_TOKEN=$(nlw_token) \
+            -e TEST_NAME=CI-smoke \
+            -e CONTROLLER_ZONE_ID=GcRHw \
+            -e LG_ZONE_IDS=GcRHw:1 \
+            neotys/neoload-web-test-launcher:latest
