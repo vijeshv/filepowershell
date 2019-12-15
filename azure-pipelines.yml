@@ -43,7 +43,7 @@ stages:
         docker run -t --rm \
           -v "$(wksp)/neoload_project":/neoload-project \
           -e SCENARIO_NAME=jenkinsscenario \
-          -e NEOLOADWEB_TOKEN=$(nlw_token) \
+          -e NEOLOADWEB_TOKEN="$nlw_token" \
           -e TEST_NAME=CI-smoke \
           -e CONTROLLER_ZONE_ID=GcRHw \
           -e LG_ZONE_IDS=GcRHw:1 \
