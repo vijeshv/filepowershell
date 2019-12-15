@@ -28,7 +28,7 @@ stages:
         echo $(zip_file_url);
         rm -rf $(wksp)/neoload_project;
         mkdir $(wksp)/neoload_project;
-        curl $(zip_file_url) --output "($wksp)/neoload_project/project.zip"
+        curl $(zip_file_url) --output "($wksp)/project.zip"
 - stage: Run_NeoLoad_project
   displayName: Run load2
   jobs:
