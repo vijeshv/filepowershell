@@ -25,7 +25,7 @@ stages:
       vmImage: 'ubuntu-16.04'
     steps:
     - bash: |
-        echo $zip_file_url
+        echo $(zip_file_url);
         rm -rf $wksp/neoload_project;
         mkdir $wksp/neoload_project;
         curl $zip_file_url --output "$wksp/neoload_project/project.zip"
