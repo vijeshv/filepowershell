@@ -35,18 +35,18 @@ stages:
     displayName: Run 2
     pool:
       vmImage: 'ubuntu-18.04'
-      steps:
-      - task: DockerInstaller@0
-        inputs:
-          dockerVersion: '17.09.0-ce'
-      - bash: |
-         docker run -t --rm \
-            -v "$(wksp)/neoload_project":/neoload-project \
-            -e SCENARIO_NAME=jenkinsscenario \
-            -e NEOLOADWEB_TOKEN=$(nlw_token) \
-            -e TEST_NAME=CI-smoke \
-            -e CONTROLLER_ZONE_ID=GcRHw \
-            -e LG_ZONE_IDS=GcRHw:1 \
-            neotys/neoload-web-test-launcher:latest
+    steps:
+    - task: DockerInstaller@0
+      inputs:
+        dockerVersion: '17.09.0-ce'
+    - bash: |
+        docker run -t --rm \
+          -v "$(wksp)/neoload_project":/neoload-project \
+          -e SCENARIO_NAME=jenkinsscenario \
+          -e NEOLOADWEB_TOKEN=$(nlw_token) \
+          -e TEST_NAME=CI-smoke \
+          -e CONTROLLER_ZONE_ID=GcRHw \
+          -e LG_ZONE_IDS=GcRHw:1 \
+          neotys/neoload-web-test-launcher:latest
 
       
