@@ -29,7 +29,7 @@ stages:
         mkdir $(wksp)/neoload_project
         curl $(zip_file_url) --output $(wksp)/neoload_project/project.zip
 - stage: Run_NeoLoad_project
-  displayName: Run load
+  displayName: Run load2
   jobs:
   - job: Run
     displayName: Run
