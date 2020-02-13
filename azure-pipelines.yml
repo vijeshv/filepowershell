@@ -53,6 +53,7 @@ jobs:
                 --testname "Azure_sidecars_$(Build.BuildNumber)" \
                 --testdesc "Azure example load test with sidecars; $(Build.BuildUri)" \
                 --attach zone#2 \
+                --profile docker --token $(nlw_token) --zone $(zone_code) \
                 --junitsla $(Common.TestResultsDirectory)/neoload-slas.xml
   - task: PublishTestResults@2
     inputs:
