@@ -49,8 +49,7 @@ jobs:
       script: |
         cd $(Build.SourcesDirectory)
         neoload --scenario smokeScenario \
-                -f example_test/default.yaml \
-                -f example_test/slas/uat.yaml \
+                -f default.yaml \
                 --testname "Azure_sidecars_$(Build.BuildNumber)" \
                 --testdesc "Azure example load test with sidecars; $(Build.BuildUri)" \
                 --attach zone#2 \
