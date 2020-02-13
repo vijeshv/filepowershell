@@ -1,0 +1,95 @@
+name: ascodestandalone
+user_paths:
+- name: MyUserPath
+  actions:
+    steps:
+    - transaction:
+        name: MyTransaction_2
+        steps:
+        - request:
+            url: http://petstore.swagger.io/v2/pet/findByStatus?status=pending
+            extractors:
+            - name: ExtractedVariable_id
+              jsonpath: $[0].id
+        - delay: 2s
+        - request:
+            url: http://petstore.swagger.io:80/v2/pet/${ExtractedVariable_id}
+populations:
+- name: Population1
+  user_paths:
+  - name: MyUserPath
+- name: Population2
+  user_paths:
+  - name: MyUserPath
+- name: Population3
+  user_paths:
+  - name: MyUserPath
+scenarios:
+- name: AsCodeStandalone
+  description: My scenario 1 with 3 populations
+  #sla_profile: SlaProfile1
+  populations:
+  - name: Population1
+    constant_load:
+      users: 2
+      duration: 3m
+      start_after: 10s
+      rampup: 1m
+      stop_after: 10s
+  - name: Population2
+    rampup_load:
+      min_users: 1
+      max_users: 2
+      increment_users: 1
+      increment_every: 1 iteration
+      duration: 2 iterations
+      start_after: Population1
+      increment_rampup: 30s
+      stop_after: current_iteration
+  - name: Population3
+    peaks_load:
+      minimum:
+        users: 1
+        duration: 1 iteration
+      maximum:
+        users: 1
+        duration: 1 iteration
+      start: maximum
+      duration: 3 iterations
+      start_after: 1m
+      step_rampup: 15s
+      stop_after: 1m
+- name: MyScenario2
+  description: My scenario 1 with 3 populations
+  #sla_profile: SlaProfile1
+  populations:
+  - name: Population1
+    constant_load:
+      users: 5
+      duration: 5m
+      start_after: 30s
+      rampup: 1m
+      stop_after: 30s
+  - name: Population2
+    rampup_load:
+      min_users: 1
+      max_users: 5
+      increment_users: 1
+      increment_every: 1 iteration
+      duration: 15 iterations
+      start_after: Population1
+      increment_rampup: 1m30s
+      stop_after: current_iteration
+  - name: Population3
+    peaks_load:
+      minimum:
+        users: 1
+        duration: 1 iteration
+      maximum:
+        users: 5
+        duration: 1 iteration
+      start: maximum
+      duration: 15 iterations
+      start_after: 1m
+      step_rampup: 15s
+      stop_after: 1m
