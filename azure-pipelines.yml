@@ -1,3 +1,4 @@
+# the pipeline itself to provision controllers and load generators (typically as Docker containers), attaching them to NeoLoad Web temporarily, running the test, then disposing of the containers
 trigger: none
 
 pool:
