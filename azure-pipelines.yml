@@ -51,8 +51,8 @@ jobs:
         cd $(Build.SourcesDirectory)
         neoload --scenario AsCodeStandalone \
                 -f default.yaml \
-                --testname "Azure_sidecars_$(Build.BuildNumber)" \
-                --testdesc "Azure example load test with sidecars; $(Build.BuildUri)" \
+                --testname "Azure_Jpet_$(Build.BuildNumber)" \
+                --testdesc "Azure example load test with ; $(Builjpetd.BuildUri)" \
                 --attach zone#2 \
                 --profile docker --token $(nlw_token) --zone $(zone_code) \
                 --junitsla $(Common.TestResultsDirectory)/neoload-slas.xml
