@@ -36,7 +36,7 @@ jobs:
   steps:
   - task: UsePythonVersion@0
     inputs:
-      versionSpec: '3.8'
+      versionSpec: '3.6'
 
   - task: Bash@3
     displayName: Install NeoLoad
@@ -45,8 +45,7 @@ jobs:
       targetType: 'inline'
       script: |
         pip install neoload
-        neoload --version --profile docker --token $(nlw_token) --zone $(zone_code)
-        neoload --help
+        neoload --profile docker --token $(nlw_token) --zone $(zone_code)
   - task: Bash@3
     displayName: Run NeoLoad Test
     continueOnError: true
@@ -62,7 +61,6 @@ jobs:
                 --attach zone#2 \
                 --profile docker --token $(nlw_token) --zone $(zone_code) \
                 --junitsla $(Common.TestResultsDirectory)/neoload-slas.xml
-        neoload --help
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'JUnit'
