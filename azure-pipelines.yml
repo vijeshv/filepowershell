@@ -55,7 +55,7 @@ jobs:
         cd $(Build.SourcesDirectory)
         neoload login --url ${{parameters.neoloadApiUrl}} $(nlw_token) \
                 test-settings --zone $(zone_code) --scenario AsCodeStandalone  patch "My Azure Test With CLI" \
-                upload default.yaml
+                --path default.yaml
       
         #neoload --scenario AsCodeStandalone \
         #        -f default.yaml \
