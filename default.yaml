@@ -1,10 +1,18 @@
 name: ascodestandalone
+sla_profiles:
+- name: MySLAProfile
+  thresholds:
+  - avg-request-resp-time warn >= 200ms fail >= 500ms per test
+  - perc-transaction-resp-time (p90) warn >= 1s fail >= 2s per test
+  - error-rate warn >= 2% fail >= 5% per test
+  - error-rate warn >= 5% per interval
 user_paths:
 - name: MyUserPath
   actions:
+    sla_profile: MySLAProfile
     steps:
     - transaction:
-        name: MyTransaction_2
+        name: AvailablePets
         steps:
         - request:
             url: https://petstore.swagger.io/v2/pet/findByStatus?status=available
