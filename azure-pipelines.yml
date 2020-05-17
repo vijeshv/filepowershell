@@ -52,6 +52,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
+        neoload --help
         cd $(Build.SourcesDirectory)
         neoload --scenario AsCodeStandalone \
                 -f default.yaml \
