@@ -41,6 +41,7 @@ jobs:
       targetType: 'inline'
       script: |
         pip install neoload
+        neoload --help
   - task: Bash@3
     displayName: Run NeoLoad Test
     continueOnError: true
