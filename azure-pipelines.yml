@@ -56,6 +56,7 @@ jobs:
         neoload login --url ${{parameters.neoloadApiUrl}} $(nlw_token) \
                 test-settings --zone $(zone_code) --scenario "AsCodeStandalone" \
                 project --path upload "default.yaml"
+      
         #neoload --scenario AsCodeStandalone \
         #        -f default.yaml \
         #        --testname "Azure_Jpet_$(Build.BuildNumber)" \
