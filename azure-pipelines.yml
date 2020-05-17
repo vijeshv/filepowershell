@@ -62,6 +62,7 @@ jobs:
                 --attach zone#2 \
                 --profile docker --token $(nlw_token) --zone $(zone_code) \
                 --junitsla $(Common.TestResultsDirectory)/neoload-slas.xml
+
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'JUnit'
