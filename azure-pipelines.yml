@@ -46,7 +46,6 @@ jobs:
       script: |
         pip install neoload
         neoload --version --profile docker --token $(nlw_token) --zone $(zone_code)
-        neoload --help
   - task: Bash@3
     displayName: Run NeoLoad Test
     continueOnError: true
