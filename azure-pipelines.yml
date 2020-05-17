@@ -3,6 +3,10 @@ trigger: none
 
 pool:
   vmImage: 'ubuntu-16.04'
+parameters:
+- name: neoloadApiUrl
+  type: string
+  default: 'https://neoload-api.saas.neotys.com/'
 
 variables:
   nlw_token: $(secret_nlw_token)
@@ -49,13 +53,16 @@ jobs:
       targetType: 'inline'
       script: |
         cd $(Build.SourcesDirectory)
-        neoload --scenario AsCodeStandalone \
-                -f default.yaml \
-                --testname "Azure_Jpet_$(Build.BuildNumber)" \
-                --testdesc "Azure example load test with ; $(Builjpetd.BuildUri)" \
-                --attach zone#2 \
-                --profile docker --token $(nlw_token) --zone $(zone_code) \
-                --junitsla $(Common.TestResultsDirectory)/neoload-slas.xml
+        neoload login --url ${{parameters.neoloadApiUrl}} $(nlw_token) \
+                test-settings --zone $(zone_code) --scenario AsCodeStandalone \
+                project --path default.yaml"
+        #neoload --scenario AsCodeStandalone \
+        #        -f default.yaml \
+        #        --testname "Azure_Jpet_$(Build.BuildNumber)" \
+        #        --testdesc "Azure example load test with ; $(Builjpetd.BuildUri)" \
+        #        --attach zone#2 \
+        #        --profile docker --token $(nlw_token) --zone $(zone_code) \
+        #        --junitsla $(Common.TestResultsDirectory)/neoload-slas.xml
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'JUnit'
