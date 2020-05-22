@@ -61,6 +61,7 @@ jobs:
                 --attach zone#2 \
                 --profile docker --token $(nlw_token) --zone $(zone_code) \
                 --junitsla $(Common.TestResultsDirectory)/neoload-slas.xml
+        neoload logs-url "Azure_Jpet_$(Build.BuildNumber)"
   - task: Bash@3
     inputs:
        script: |
