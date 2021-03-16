@@ -53,7 +53,7 @@ jobs:
       targetType: 'inline'
       script: |
         neoload --help
-        neoload login --url ${{parameters.neoloadApiUrl}} ${{parameters.nlw_token}} \
+        neoload login --url ${{parameters.neoloadApiUrl}} $(nlw_token) \
                 test-settings --zone ${{parameters.zone_code}} --scenario AsCodeStandalone patch "My Azure Test With CLI" \
                 project --path $(Build.SourcesDirectory)/ upload "My Azure Test With CLI"
   - task: Bash@3
