@@ -53,6 +53,7 @@ jobs:
       targetType: 'inline'
       script: |
         neoload --help
+        echo $(Build.SourcesDirectory)
         neoload login --url ${{parameters.neoloadApiUrl}} $(nlw_token) \
                 test-settings --zone $(zone_code) --scenario AsCodeStandalone createorpatch "My Azure Test With CLI" \
                 project --path $(Build.SourcesDirectory)/ upload "default"
