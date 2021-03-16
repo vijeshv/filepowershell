@@ -44,7 +44,8 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        pip install 'neoload==0.4.6'
+        pip install neoload
+        neoload --version
         neoload --profile docker --token $(nlw_token) --zone $(zone_code)
   - task: Bash@3
     displayName: Run NeoLoad Test
