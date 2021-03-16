@@ -56,7 +56,7 @@ jobs:
         echo $(Build.SourcesDirectory)
         neoload login --url ${{parameters.neoloadApiUrl}} $(nlw_token) \
                 test-settings --zone $(zone_code) --scenario AsCodeStandalone createorpatch "My Azure Test With CLI" \
-                project --path $(Build.SourcesDirectory)/ upload "default"
+                project --path $(Build.SourcesDirectory)/ upload "My Azure Test With CLI"
   - task: Bash@3
     displayName: Run the NeoLoad test
     continueOnError: true
