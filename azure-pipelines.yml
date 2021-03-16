@@ -64,7 +64,7 @@ jobs:
       targetType: 'inline'
       script: |
         neoload run \
-                       --web-vu 5 \
+                       --web-vu 10 \
                        --as-code default.yaml\
                        --name "TestLaunchedFromAzureCI_build_$(Build.BuildNumber)" \
                        --description "Azure example with meta; $(Build.BuildUri)" \
