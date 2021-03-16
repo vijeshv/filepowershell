@@ -69,6 +69,14 @@ jobs:
                        --name "TestLaunchedFromAzureCI_build_$(Build.BuildNumber)" \
                        --description "Azure example with meta; $(Build.BuildUri)" \
                        "My Azure Test With CLI"
+
+  - task: Bash@3
+    displayName: Get the junit SLA report
+    continueOnError: true
+    inputs:
+      targetType: 'inline'
+      script: |
+       neoload test-results --junit-file $(Common.TestResultsDirectory)/neoload-slas.xml junitsla
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'JUnit'
