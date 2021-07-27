@@ -40,7 +40,7 @@ scenarios:
   populations:
   - name: Population1
     constant_load:
-      users: 2
+      users: 10
       duration: 3m
       start_after: 10s
       rampup: 1m
@@ -48,12 +48,12 @@ scenarios:
   - name: Population2
     rampup_load:
       min_users: 1
-      max_users: 2
+      max_users: 15
       increment_users: 1
       increment_every: 1 iteration
-      duration: 2 iterations
+      duration: 50 iterations
       start_after: Population1
-      increment_rampup: 30s
+      increment_rampup: 5s
       stop_after: current_iteration
   - name: Population3
     peaks_load:
@@ -61,7 +61,7 @@ scenarios:
         users: 1
         duration: 1 iteration
       maximum:
-        users: 1
+        users: 10
         duration: 1 iteration
       start: maximum
       duration: 3 iterations
