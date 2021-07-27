@@ -49,7 +49,7 @@ scenarios:
     rampup_load:
       min_users: 1
       max_users: 15
-      increment_users: 1
+      increment_users: 3
       increment_every: 1 iteration
       duration: 50 iterations
       start_after: Population1
