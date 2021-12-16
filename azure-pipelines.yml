@@ -65,7 +65,6 @@ jobs:
       script: |
         neoload run \
                        --web-vu 50 \
-                       #--as-code default.yaml\
                        --name "TestLaunchedFromAzureCI_build_$(Build.BuildNumber)" \
                        --description "Azure example with meta; $(Build.BuildUri)" \
                        --external-url "$(Build.BuildUri)" \
