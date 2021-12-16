@@ -68,6 +68,8 @@ jobs:
                        #--as-code default.yaml\
                        --name "TestLaunchedFromAzureCI_build_$(Build.BuildNumber)" \
                        --description "Azure example with meta; $(Build.BuildUri)" \
+                       --external-url "$(Build.BuildUri)" \
+                       --external-url-label "Azure CI build $(Build.BuildNumber)" \
                        "My Azure Test With CLI"
 
   - task: Bash@3
