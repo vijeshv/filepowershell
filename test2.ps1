@@ -1,2 +1,2 @@
-Get-Process | Out-File -FilePath .\Process.txt
+Hello world | Out-File -FilePath .\Process.txt
 Get-Content -Path .\Process.txt
