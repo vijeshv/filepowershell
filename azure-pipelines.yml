@@ -46,6 +46,16 @@ jobs:
       script: |
         pip install neoload
         neoload --version
+        
+  - task: PowerShell@2
+    inputs:
+      targetType: 'filePath'
+      filePath: $(System.DefaultWorkingDirectory)\test2.ps1
+      arguments: > # Use this to avoid newline characters in multiline string
+        -input1 "Hello"
+        -input2 "World"
+    displayName: 'Print Hello World'
+    
   - task: Bash@3
     displayName: Configure the NeoLoad test
     continueOnError: true
